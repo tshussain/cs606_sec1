@@ -1,26 +1,14 @@
+
+import 'package:cs606_sec1/EnterPetRecord.dart';
 import 'package:cs606_sec1/PetRecord.dart';
 import 'package:flutter/material.dart';
-import 'package:imagebutton/imagebutton.dart';
-
-import 'Dog.dart';
-import 'inclass_examples/Animal.dart';
-import 'DogListView.dart';
-import 'inclass_examples/MixItUp.dart';
-
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-// import com.tekartik.sqflite.SqflitePlugin;
+import 'ListPetRecordsPage.dart';
+import 'database/DBHelper.dart';
 
 
 // https://medium.com/@rajajawahar77/sqflite-database-in-flutter-c0b7be83bcd2
-
-import 'dart:async';
 
 void main() async {
   runApp(MyApp());
@@ -68,9 +56,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var _formKey = GlobalKey<FormState>();
-  String _petName;
-  int _petAge;
 
   @override
   void initState() {
@@ -94,61 +79,31 @@ class _MyHomePageState extends State<MyHomePage> {
       body:
           SingleChildScrollView(
             child: Center(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: new InputDecoration(labelText: "Pet Name"),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                        },
-                      onSaved: (value) => this._petName = value,
-                    ),
-                    TextFormField(
-                      decoration: new InputDecoration(labelText: "Pet Age"),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        } else if (int.parse(value) < 0) {
-                          return 'Please enter a non-negative age';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) => this._petAge = int.parse(value),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _saveForm();
-                      },
-                      child: Text("Submit")
-                    )
+              child: Column(children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EnterPetRecordPage())
+                    );
+                  },
+                  child: Text("Enter Pet Record")
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ListPetRecordsPage())
+                      );
+                    },
+                    child: Text("List Pet Records")
+                ),
 
-                  ]
-                )
-              ),
+              ],)
 
             ),
           ),
     );
   }
 
-  var _formKey = GlobalKey<FormState>();  // put this at the top of the class
-
-  void _saveForm() {
-    // Validate returns true if the form is valid, or false otherwise.
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
-
-      // Create a PetRecord with the information from the form
-      PetRecord petRecord = PetRecord(_petName, _petAge);
-      print(petRecord);
-
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(content: Text('Data saved successfully')));
-    }
-  }
 }

@@ -26,7 +26,7 @@ dependencies:
   sqflite:
   path:
   path_provider:
-    
+
   flutter:
     sdk: flutter
 
