@@ -5,12 +5,6 @@ import 'dart:async';
 import 'PetRecord.dart';
 import 'database/DBHelper.dart';
 
-Future<List<PetRecord>> fetchPetRecordsFromDatabase() async {
-  var dbHelper = DBHelper();
-  Future<List<PetRecord>> petRecords = dbHelper.getPetRecords();
-  return petRecords;
-}
-
 class ListPetRecordsPage extends StatefulWidget {
   @override
   ListPetRecordsPageState createState() => new ListPetRecordsPageState();
@@ -53,4 +47,10 @@ class ListPetRecordsPageState extends State<ListPetRecordsPage> {
       ),
     );
   }
+}
+
+Future<List<PetRecord>> fetchPetRecordsFromDatabase() async {
+  var dbHelper = DBHelper();
+  Future<List<PetRecord>> petRecords = dbHelper.getPetRecords();
+  return petRecords;
 }

@@ -3,6 +3,7 @@ import 'package:cs606_sec1/EnterPetRecord.dart';
 import 'package:cs606_sec1/PetRecord.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:responsive_grid/responsive_grid.dart';
 
 import 'ListPetRecordsPage.dart';
 import 'database/DBHelper.dart';
@@ -70,39 +71,106 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body:
-          SingleChildScrollView(
-            child: Center(
-              child: Column(children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EnterPetRecordPage())
-                    );
-                  },
-                  child: Text("Enter Pet Record")
-                ),
-                ElevatedButton(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          // Here we take the valu
+          // e from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(widget.title),
+        ),
+        body:
+            SingleChildScrollView(
+              child: Center(
+                child: Column(children: [
+                ResponsiveGridRow(children:[
+                ResponsiveGridCol(
+                    xs:6,
+                    md:12,
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => EnterPetRecordPage())
+                        );
+                      },
+                      child: Container(
+                        height: 100,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("assets/images/pug.jpg"),
+                              fit: BoxFit.fitWidth
+                          )
+                        ),
+                        child: Text("Enter Pet")
+                    ))),
+                ResponsiveGridCol(
+                    xs:6,
+                    md:12,
+                    child: Container(
+                      height: 100,
+                      color: Colors.pink,
+                    )),
+                  ]),
+                  ResponsiveGridRow(children:[
+                    ResponsiveGridCol(
+                        xs:12,
+                        md:4,
+                        lg:3,
+                        child: Container(
+                          height: 100,
+                          color: Colors.blue,
+                        )),
+                    ResponsiveGridCol(
+                        xs:12,
+                        md: 8,
+                        lg: 3,
+                        child: Container(
+                          height: 100,
+                          color: Colors.red,
+                        )),
+                    ResponsiveGridCol(
+                        xs:12,
+                        md: 4,
+                        lg: 3,
+                        child: Container(
+                          height: 100,
+                          color: Colors.orange,
+                        )),
+                    ResponsiveGridCol(
+                        xs:12,
+                        md: 8,
+                        lg: 3,
+                        child: Container(
+                          height: 100,
+                          color: Colors.green,
+                        )),
+                  ]),
+                  ElevatedButton(
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ListPetRecordsPage())
+                        context,
+                        MaterialPageRoute(builder: (context) => EnterPetRecordPage())
                       );
                     },
-                    child: Text("List Pet Records")
-                ),
+                    child: Text("Enter Pet Record")
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ListPetRecordsPage())
+                        );
+                      },
+                      child: Text("List Pet Records")
+                  ),
 
-              ],)
+                ],)
 
+              ),
             ),
-          ),
+      ),
     );
   }
 

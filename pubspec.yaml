@@ -26,6 +26,7 @@ dependencies:
   sqflite:
   path:
   path_provider:
+  responsive_grid: ^2.0.0
 
   flutter:
     sdk: flutter
