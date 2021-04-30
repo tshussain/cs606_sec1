@@ -38,10 +38,12 @@ class ListPetRecordsPageState extends State<ListPetRecordsPage> {
                           new Divider()
                         ]);
                   });
+            } else if (snapshot.data == null) {
+                 return new Container(alignment: AlignmentDirectional.center,child: new CircularProgressIndicator(),);
             } else if (snapshot.data.length == 0) {
               return new Text("No Data found");
             }
-            return new Container(alignment: AlignmentDirectional.center,child: new CircularProgressIndicator(),);
+             return new Container(alignment: AlignmentDirectional.center,child: new CircularProgressIndicator(),);
           },
         ),
       ),

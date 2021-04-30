@@ -1,4 +1,5 @@
 
+import 'package:cs606_sec1/ChoosePetPage.dart';
 import 'package:cs606_sec1/EnterPetRecord.dart';
 import 'package:cs606_sec1/PetRecord.dart';
 import 'package:flutter/material.dart';
@@ -164,6 +165,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         );
                       },
                       child: Text("List Pet Records")
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ChoosePetPage())
+                        );
+                      },
+                      child: Text("Choose Pet")
                   ),
 
                 ],)
