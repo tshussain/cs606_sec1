@@ -85,12 +85,19 @@ class DBHelper{
   }
 
 
-  // Retrieving pet record from PetRecord Tables
+  // Retrieve all pets purchased by owner
   Future<List<PetRecord>> getOwnerPets(int ownerId) async {
     var dbClient = await db;  // Get the singleton database
     // List<Map> list = await dbClient.rawQuery('SELECT * FROM PetRecord JOIN Purchase ON PetRecord.id = Purchase.petrecord_id JOIN Owner ON owner_id = ' + ownerId.toString());
-    List<Map> list = await dbClient.rawQuery('SELECT * FROM PetRecord JOIN Purchase ON PetRecord.id = Purchase.petrecord_id JOIN Owner ON owner_id = owner_id' +
-         ' WHERE owner_id = ' + ownerId.toString());
+    List<Map> list = await dbClient.rawQuery('SELECT * FROM PetRecord JOIN Purchase '
+        'ON PetRecord.id = Purchase.petrecord_id WHERE owner_id = ' + ownerId.toString());
+
+    // SELECT * Purchase
+    // FROM Purchase
+    // INNER JOIN Order ON Orders.ID=Purchase.ID
+    // INNER JOIN PetRecord
+    // ON PetRecord.ID = Purchase.ID
+
     List<PetRecord> petRecords = [];
     for (int i = 0; i < list.length; i++) {
       Map entry = list[i];
