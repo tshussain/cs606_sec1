@@ -8,7 +8,7 @@ import 'package:imagebutton/imagebutton.dart';
 import 'DogListView.dart';
 
 class DogDisplayPage extends StatefulWidget {
-  DogDisplayPage({Key key, this.title}) : super(key: key);
+  DogDisplayPage({Key key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -19,7 +19,7 @@ class DogDisplayPage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  final String title = "Dog Display Page";
 
   @override
   _DogDisplayPageState createState() => _DogDisplayPageState();
@@ -82,6 +82,8 @@ class _DogDisplayPageState extends State<DogDisplayPage> {
   }
 
   List<String> _imageNames = ["assets/images/pug.jpg",
+    "assets/images/lab.jpg", "assets/images/lab.jpg", "assets/images/pug.jpg","assets/images/pug.jpg",
+    "assets/images/lab.jpg", "assets/images/lab.jpg", "assets/images/pug.jpg","assets/images/pug.jpg",
     "assets/images/lab.jpg", "assets/images/lab.jpg", "assets/images/pug.jpg"];
 
   List<Widget> getListOfImageWidgetsFromList(List<String> imageNames) {

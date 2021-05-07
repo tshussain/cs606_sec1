@@ -25,7 +25,7 @@ class DBHelper{
   //Creating a database with name test.dn in your directory
   initDb() async {
     io.Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "petRecord5.db");
+    String path = join(documentsDirectory.path, "petRecord7.db");
     var theDb = await openDatabase(path, version: 1, onCreate: _onCreate);
     return theDb;
   }
@@ -88,15 +88,12 @@ class DBHelper{
   // Retrieve all pets purchased by owner
   Future<List<PetRecord>> getOwnerPets(int ownerId) async {
     var dbClient = await db;  // Get the singleton database
-    // List<Map> list = await dbClient.rawQuery('SELECT * FROM PetRecord JOIN Purchase ON PetRecord.id = Purchase.petrecord_id JOIN Owner ON owner_id = ' + ownerId.toString());
-    List<Map> list = await dbClient.rawQuery('SELECT * FROM PetRecord JOIN Purchase '
-        'ON PetRecord.id = Purchase.petrecord_id WHERE owner_id = ' + ownerId.toString());
 
-    // SELECT * Purchase
-    // FROM Purchase
-    // INNER JOIN Order ON Orders.ID=Purchase.ID
-    // INNER JOIN PetRecord
-    // ON PetRecord.ID = Purchase.ID
+    List<Map> list = await dbClient.rawQuery(
+        'SELECT * FROM ' +
+        'PetRecord JOIN Purchase ' +
+        'ON PetRecord.id = Purchase.petrecord_id '+
+        'WHERE owner_id = ' + ownerId.toString());
 
     List<PetRecord> petRecords = [];
     for (int i = 0; i < list.length; i++) {

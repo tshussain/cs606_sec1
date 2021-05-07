@@ -14,41 +14,47 @@ class DogListView extends StatelessWidget {
 
   DogListView(this._imageNames);
 
+  List<Widget> getListOfImageWidgetsFromList(List<String> imageNames) {
+    List<Widget> allWidgets = [];
+
+    for (String imageName in imageNames) {
+      Widget myWidget = Container(
+          height: 80,
+          width: 100,
+          color: Colors.blue,
+          padding: EdgeInsets.all(10.0),
+          child: Image.asset(imageName));
+      allWidgets.add(myWidget);
+    }
+    return allWidgets;
+  }
+
   Widget _createRowOfImagesFromList4(List<String> imageNames) {
     return ListView.builder(
         itemCount: imageNames.length,
         itemBuilder: (context, index) {
           return Container(
-              height: 80,
-              width: 100,
+              // height: 80,
+              // width: 100,
               color: Colors.blue,
               padding: EdgeInsets.all(10.0),
               child: Image.asset(imageNames[index]));
         });
   }
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     body: SingleChildScrollView(
+  //         scrollDirection: Axis.horizontal,
+  //         child: Row(children: [...getListOfImageWidgetsFromList(_imageNames)])),
+  //   );
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NavBar(_imageNames),
-      // AppBar(
-      //     title: Text("Dog View Page"),
-      //     actions: <Widget>[
-      //   IconButton(
-      //       icon: Icon(Icons.arrow_back),
-      //       onPressed: () {
-      //         Navigator.pop(context);
-      //       }),
-      //   IconButton(
-      //       icon: Icon(Icons.forward),
-      //       onPressed: () {
-      //         Navigator.push(
-      //             context,
-      //             MaterialPageRoute(
-      //                 builder: (context) => MoreDogs(_imageNames)));
-      //       })
-      // ]),
-      body: _createRowOfImagesFromList4(_imageNames),
-    );
+      body: _createRowOfImagesFromList4(_imageNames));
   }
 }

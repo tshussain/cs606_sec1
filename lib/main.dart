@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
+import 'DogDisplayPage.dart';
 import 'ListPetRecordsPage.dart';
 import 'database/DBHelper.dart';
 
@@ -99,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage("assets/images/pug.jpg"),
+                              image: AssetImage("assets/images/lab.jpg"),
                               fit: BoxFit.fitWidth
                           )
                         ),
@@ -108,10 +109,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 ResponsiveGridCol(
                     xs:6,
                     md:12,
-                    child: Container(
-                      height: 100,
-                      color: Colors.pink,
-                    )),
+                  child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => DogDisplayPage())
+                        );
+                      },
+                      child: Container(
+                          height: 100,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage("assets/images/pug.jpg"),
+                                  fit: BoxFit.fitWidth
+                              )
+                          ),
+                          child: Text("Display Dogs")
+                      ))
+
+                    ),
                   ]),
                   ResponsiveGridRow(children:[
                     ResponsiveGridCol(
@@ -126,9 +143,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         xs:12,
                         md: 8,
                         lg: 3,
-                        child: Container(
-                          height: 100,
-                          color: Colors.red,
+                        child: Expanded(
+                          child: Container(
+                            height: 100,
+                            color: Colors.red,
+                          ),
                         )),
                     ResponsiveGridCol(
                         xs:12,
