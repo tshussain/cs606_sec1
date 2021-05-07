@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'PetRecord.dart';
+import 'model/PetRecord.dart';
 import 'database/DBHelper.dart';
 
 class ChoosePetPage extends StatefulWidget {

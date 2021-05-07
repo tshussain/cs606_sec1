@@ -1,6 +1,8 @@
+import 'package:cs606_sec1/model/Purchase.dart';
 import 'package:flutter/material.dart';
 
-import 'PetRecord.dart';
+import 'model/Owner.dart';
+import 'model/PetRecord.dart';
 import 'database/DBHelper.dart';
 
 class EnterPetRecordPage extends StatefulWidget {
@@ -71,16 +73,39 @@ class _EnterPetRecordPageState extends State<EnterPetRecordPage> {
     );
   }
 
-  void _saveForm() {
+  void _saveForm() async {
     // Validate returns true if the form is valid, or false otherwise.
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
 
       // Create a PetRecord with the information from the form
-      PetRecord petRecord = PetRecord(_petName, _petAge);
+      PetRecord petRecord = PetRecord.generate(_petName, _petAge);
       var dbHelper = DBHelper();
       dbHelper.savePetRecord(petRecord);
       print(petRecord);
+
+      PetRecord petRecord2 = PetRecord.generate(_petName+"2", _petAge);
+      dbHelper.savePetRecord(petRecord2);
+      print(petRecord2);
+
+      Owner owner = Owner.generate("bob");
+      dbHelper.saveOwner(owner);
+      Purchase purchase = Purchase.generate(petRecord, owner);
+      dbHelper.savePurchase(purchase);
+
+      Owner owner2 = Owner.generate("fred");
+      dbHelper.saveOwner(owner2);
+      Purchase purchase2 = Purchase.generate(petRecord2, owner2);
+      dbHelper.savePurchase(purchase2);
+
+
+      List<PetRecord> results = await dbHelper.getPetRecords();
+      print(results.length);
+      List<Owner> results2 = await dbHelper.getOwners();
+      print(results2.length);
+      List<Purchase> results4 = await dbHelper.getPurchases();
+      List<PetRecord> results3 = await dbHelper.getOwnerPets(owner.id);
+      print(results3.length);
 
       // ScaffoldMessenger.of(context).showSnackBar(
       //     SnackBar(content: Text('Data saved successfully')));

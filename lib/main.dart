@@ -1,7 +1,6 @@
 
 import 'package:cs606_sec1/ChoosePetPage.dart';
 import 'package:cs606_sec1/EnterPetRecord.dart';
-import 'package:cs606_sec1/PetRecord.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_grid/responsive_grid.dart';
