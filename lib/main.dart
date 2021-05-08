@@ -1,4 +1,3 @@
-
 import 'package:cs606_sec1/ChoosePetPage.dart';
 import 'package:cs606_sec1/EnterPetRecord.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:responsive_grid/responsive_grid.dart';
 import 'DogDisplayPage.dart';
 import 'ListPetRecordsPage.dart';
 import 'database/DBHelper.dart';
-
 
 // https://medium.com/@rajajawahar77/sqflite-database-in-flutter-c0b7be83bcd2
 
@@ -58,148 +56,130 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   void initState() {
     super.initState();
   }
 
   void _incrementCounter() {
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          // Here we take the valu
-          // e from the MyHomePage object that was created by
+          // Here we take the value
+          // from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
-        body:
-            SingleChildScrollView(
-              child: Center(
-                child: Column(children: [
-                ResponsiveGridRow(children:[
+        body: SingleChildScrollView(
+          child: Center(
+              child: Column(
+            children: [
+              ResponsiveGridRow(children: [
                 ResponsiveGridCol(
-                    xs:6,
-                    md:12,
+                    xs: 6,
+                    md: 12,
                     child: GestureDetector(
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => EnterPetRecordPage())
-                        );
-                      },
-                      child: Container(
-                        height: 100,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/images/lab.jpg"),
-                              fit: BoxFit.fitWidth
-                          )
-                        ),
-                        child: Text("Enter Pet")
-                    ))),
-                ResponsiveGridCol(
-                    xs:6,
-                    md:12,
-                  child: GestureDetector(
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => DogDisplayPage())
-                        );
-                      },
-                      child: Container(
-                          height: 100,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage("assets/images/pug.jpg"),
-                                  fit: BoxFit.fitWidth
-                              )
-                          ),
-                          child: Text("Display Dogs")
-                      ))
-
-                    ),
-                  ]),
-                  ResponsiveGridRow(children:[
-                    ResponsiveGridCol(
-                        xs:12,
-                        md:4,
-                        lg:3,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EnterPetRecordPage()));
+                        },
                         child: Container(
-                          height: 100,
-                          color: Colors.blue,
-                        )),
-                    ResponsiveGridCol(
-                        xs:12,
-                        md: 8,
-                        lg: 3,
-                        child: Expanded(
-                          child: Container(
                             height: 100,
-                            color: Colors.red,
-                          ),
-                        )),
-                    ResponsiveGridCol(
-                        xs:12,
-                        md: 4,
-                        lg: 3,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/images/lab.jpg"),
+                                    fit: BoxFit.fitWidth)),
+                            child: Text("Enter Pet")))),
+                ResponsiveGridCol(
+                    xs: 6,
+                    md: 12,
+                    child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DogDisplayPage()));
+                        },
                         child: Container(
-                          height: 100,
-                          color: Colors.orange,
-                        )),
-                    ResponsiveGridCol(
-                        xs:12,
-                        md: 8,
-                        lg: 3,
-                        child: Container(
-                          height: 100,
-                          color: Colors.green,
-                        )),
-                  ]),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
+                            height: 100,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/images/pug.jpg"),
+                                    fit: BoxFit.fitWidth)),
+                            child: Text("Display Dogs")))),
+              ]),
+              ResponsiveGridRow(children: [
+                ResponsiveGridCol(
+                    xs: 12,
+                    md: 4,
+                    lg: 3,
+                    child: Container(
+                      height: 100,
+                      color: Colors.blue,
+                    )),
+                ResponsiveGridCol(
+                    xs: 12,
+                    md: 8,
+                    lg: 3,
+                    child: Container(
+                        height: 100,
+                        color: Colors.red,
+                      ),
+                    ),
+                ResponsiveGridCol(
+                    xs: 12,
+                    md: 4,
+                    lg: 3,
+                    child: Container(
+                      height: 100,
+                      color: Colors.orange,
+                    )),
+                ResponsiveGridCol(
+                    xs: 12,
+                    md: 8,
+                    lg: 3,
+                    child: Container(
+                      height: 100,
+                      color: Colors.green,
+                    )),
+              ]),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => EnterPetRecordPage())
-                      );
-                    },
-                    child: Text("Enter Pet Record")
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ListPetRecordsPage())
-                        );
-                      },
-                      child: Text("List Pet Records")
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ChoosePetPage())
-                        );
-                      },
-                      child: Text("Choose Pet")
-                  ),
-
-                ],)
-
-              ),
-            ),
+                        MaterialPageRoute(
+                            builder: (context) => EnterPetRecordPage()));
+                  },
+                  child: Text("Enter Pet Record")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ListPetRecordsPage()));
+                  },
+                  child: Text("List Pet Records")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChoosePetPage()));
+                  },
+                  child: Text("Choose Pet")),
+            ],
+          )),
+        ),
       ),
     );
   }
-
 }
